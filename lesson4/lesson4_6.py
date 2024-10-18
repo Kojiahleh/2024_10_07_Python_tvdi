@@ -5,12 +5,11 @@ class Window(ThemedTk):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.title('使用ttk的套件')
-        self.geometry('400x300')
         style = ttk.Style(self)
-     
-        style.configure('Main.TButton',font=('Helvetica',15,'bold'))
-        btn1 = ttk.Button(self,text='Button Demo',style='Main.TButton')
-        btn1.pack(padx=10,pady=10,ipadx=10,ipady=10)
+        topFrame = ttk.Frame(self,width=300,height=100,borderwidth=1,relief='groove')
+        topFrame.pack(pady=(10,0))
+        bottomFrame = ttk.Frame(self,width=500,height=300,borderwidth=1,relief='groove')
+        bottomFrame.pack(padx=10,pady=10)
 
 def main():
     window = Window(theme='radiance')
