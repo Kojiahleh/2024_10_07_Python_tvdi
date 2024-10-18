@@ -16,8 +16,8 @@ class Window(tk.Tk):
         print(messege.winfo_class())
         messege.pack()
         '''
-        style.configure('Main.TButton',font=('Ariel',15))
-        btn1 = ttk.Button(self,text='Button Demo')
+        style.configure('Main.TButton',font=('Helvetica',15))
+        btn1 = ttk.Button(self,text='Button Demo',style='Main.TButton')
         btn1.pack(padx=10,pady=10,ipadx=10,ipady=10)
 
 def main():
