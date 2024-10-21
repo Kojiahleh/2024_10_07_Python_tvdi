@@ -1,4 +1,5 @@
 from tkinter import ttk
+import tkinter as tk
 from ttkthemes import ThemedTk
 
 class Window(ThemedTk):
@@ -18,13 +19,27 @@ class Window(ThemedTk):
 
         #bottomFrame================================================
         bottomFrame = ttk.Frame(self)
-        ttk.Label(bottomFrame,text='UserName:').grid(column=0,row=0)
-        ttk.Label(bottomFrame,text='Password:').grid(column=0,row=1)
-        bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20))
+        bottomFrame.columnconfigure(index=0,weight=1)
+        bottomFrame.columnconfigure(index=1,weight=9)
+        ttk.Label(bottomFrame,text='UserName:').grid(column=0,row=0,padx=(10,0),sticky='E')
+        self.username= tk.StringVar()
+        ttk.Entry(bottomFrame,textvariable=self.username).grid(column=1,row=0,pady=10)
+        ttk.Label(bottomFrame,text='Password:').grid(column=0,row=1,sticky='E')
+        self.password= tk.StringVar()
+        ttk.Entry(bottomFrame,textvariable=self.password).grid(column=1,row=1,padx=10,pady=10)
+
+        cancel_btn = ttk.Button(bottomFrame,text='取消')
+        cancel_btn.grid(column=0,row=2,padx=10,pady=(30,0))
+        ok_btn = ttk.Button(bottomFrame,text='確定')
+        ok_btn.grid(column=1,row=2,padx=10,pady=(30,0),sticky='E')
+
+        bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
         #end bottomFrame============================================
 
 def main():
     window = Window(theme='radiance')
+    window.username.set('請輸入姓名')
+    window.password.set('請輸入密碼')
     window.mainloop()
 
 if __name__ == '__main__':
