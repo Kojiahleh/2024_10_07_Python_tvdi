@@ -22,9 +22,12 @@ class Window(ThemedTk):
         bottomFrame.columnconfigure(index=0,weight=1)
         bottomFrame.columnconfigure(index=1,weight=9)
         ttk.Label(bottomFrame,text='UserName:').grid(column=0,row=0,padx=(10,0),sticky='E')
+
         self.username= tk.StringVar()
         ttk.Entry(bottomFrame,textvariable=self.username).grid(column=1,row=0,pady=10)
+
         ttk.Label(bottomFrame,text='Password:').grid(column=0,row=1,sticky='E')
+        
         self.password= tk.StringVar()
         ttk.Entry(bottomFrame,textvariable=self.password).grid(column=1,row=1,padx=10,pady=10)
 
