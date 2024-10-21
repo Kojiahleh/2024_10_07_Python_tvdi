@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 from ttkthemes import ThemedTk
+from tkinter.messagebox import showinfo
 
 class Window(ThemedTk):
     def __init__(self,*args,**kwargs):
@@ -27,22 +28,33 @@ class Window(ThemedTk):
         ttk.Entry(bottomFrame,textvariable=self.username).grid(column=1,row=0,pady=10)
 
         ttk.Label(bottomFrame,text='Password:').grid(column=0,row=1,sticky='E')
-        
-        self.password= tk.StringVar()
-        ttk.Entry(bottomFrame,textvariable=self.password).grid(column=1,row=1,padx=10,pady=10)
 
-        cancel_btn = ttk.Button(bottomFrame,text='取消')
+        self.password= tk.StringVar()
+        ttk.Entry(bottomFrame,textvariable=self.password,show="*").grid(column=1,row=1,padx=10,pady=10)
+
+        cancel_btn = ttk.Button(bottomFrame,text='取消',command=self.cancel_click)
         cancel_btn.grid(column=0,row=2,padx=10,pady=(30,0))
-        ok_btn = ttk.Button(bottomFrame,text='確定')
+
+        ok_btn = ttk.Button(bottomFrame,text='確定',command=self.ok_click)
         ok_btn.grid(column=1,row=2,padx=10,pady=(30,0),sticky='E')
 
         bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
         #end bottomFrame============================================
 
+    def cancel_click(self):
+        self.username.set("")
+        self.password.set("")
+    
+    def ok_click(self):
+        username=self.username.get()
+        password=self.password.get()
+        print(self.password)
+        showinfo(title="使用者輸入",message=f'使用者名稱:{username}\n使用者密碼:{password}')
+
 def main():
     window = Window(theme='radiance')
-    window.username.set('請輸入姓名')
-    window.password.set('請輸入密碼')
+    # window.username.set('請輸入姓名')
+    # window.password.set('請輸入密碼')
     window.mainloop()
 
 if __name__ == '__main__':
