@@ -4,21 +4,24 @@ from ttkthemes import ThemedTk
 class Window(ThemedTk):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        #============style============
+
+        #style==================================================
         style = ttk.Style(self)
         style.configure('TopFrame.TLabel',font=('Helvetica',20))
-        #==========end style==========
+        #end style==============================================
 
-        #==========topFrame===========
+        #topFrame=============================================================
         topFrame = ttk.Frame(self)
         ttk.Label(topFrame,text='個人資訊輸入:',style='TopFrame.TLabel').pack()
         topFrame.pack(padx=20,pady=20)
-        #========end topFrame=========
+        #end topFrame=========================================================
 
-
+        #bottomFrame================================================
         bottomFrame = ttk.Frame(self)
-        bottomFrame.pack()
-
+        ttk.Label(bottomFrame,text='UserName:').grid(column=0,row=0)
+        ttk.Label(bottomFrame,text='Password:').grid(column=0,row=1)
+        bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20))
+        #end bottomFrame============================================
 
 def main():
     window = Window(theme='radiance')
