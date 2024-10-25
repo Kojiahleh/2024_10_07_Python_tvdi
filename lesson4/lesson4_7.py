@@ -2,79 +2,67 @@ from tkinter import ttk
 from ttkthemes import ThemedTk
 
 class Window(ThemedTk):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.title('多層次按鈕視窗')
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.title('按鈕123456789101112')
+
+        #style==================================================
         style = ttk.Style(self)
+        style.configure('bottom.TFrame', background='lightgreen')
+        #end style==============================================
+
+        #topFrame=======================================================
+        topFrame = ttk.Frame(self,borderwidth=1,relief='groove')
+        btn1 = ttk.Button(topFrame,text='左上')
+        btn1.pack(side='left',expand=True,fill='x',padx=10)
+        btn2 = ttk.Button(topFrame,text='中上')
+        btn2.pack(side='left',expand=True,fill='x')
+        btn3 = ttk.Button(topFrame,text='右上')
+        btn3.pack(side='left',expand=True,fill='x',padx=10)
+        topFrame.pack(padx=10,pady=(10,0),ipady=10,fill='x')
+        #end topFrame===================================================
+
+        #bottomFrame=====================================================================
+        bottomFrame = ttk.Frame(self,borderwidth=1,relief='groove')
         
-        # 頂部框架
-        topFrame = ttk.Frame(self, relief='groove', borderwidth=2)
-        btn1 = ttk.Button(topFrame, text='按鈕1')
-        btn1.pack(side='left', padx=5, pady=5, fill='x', expand=True)
-        btn2 = ttk.Button(topFrame, text='按鈕2')
-        btn2.pack(side='left', padx=5, pady=5, fill='x', expand=True)
-        btn3 = ttk.Button(topFrame, text='按鈕3')
-        btn3.pack(side='left', padx=5, pady=5, fill='x', expand=True)
-        topFrame.pack(pady=10, padx=10, fill='x')
-        
-        # 底部主框架
-        bottomFrame = ttk.Frame(self)
-        
-        # 左側框架
-        leftFrame = ttk.Frame(bottomFrame, relief='groove', borderwidth=2)
-        
-        # 創建上半部分框架（固定50%高度）
-        upperFrame = ttk.Frame(leftFrame)
-        btn4 = ttk.Button(upperFrame, text='按鈕4')
-        btn4.pack(pady=10, padx=10, fill='both', expand=True)
-        upperFrame.pack(fill='both', expand=True)  # expand=True 使其佔50%空間
-        
-        # 創建下半部分框架（固定50%高度）
-        lowerFrame = ttk.Frame(leftFrame)
-        # 在下半部分平均分配按鈕5和6
-        btn5 = ttk.Button(lowerFrame, text='按鈕5')
-        btn5.pack(pady=5, padx=10, fill='both', expand=True)
-        btn6 = ttk.Button(lowerFrame, text='按鈕6')
-        btn6.pack(pady=5, padx=10, fill='both', expand=True)
-        lowerFrame.pack(fill='both', expand=True)  # expand=True 使其佔50%空間
-        
-        leftFrame.pack(side='left', padx=10, fill='both', expand=True)
-        
-        # 中間框架
-        middleFrame = ttk.Frame(bottomFrame, relief='groove', borderwidth=2)
-        
-        # 按鈕7佔據較大空間
-        btn7 = ttk.Button(middleFrame, text='按鈕7')
-        btn7.pack(pady=(10,5), padx=10, fill='both', expand=True)
-        
-        # 按鈕8為較小按鈕
-        btn8 = ttk.Button(middleFrame, text='按鈕8')
-        btn8.pack(pady=5, padx=10, fill='x')
-        
-        # 按鈕9佔據較大空間
-        btn9 = ttk.Button(middleFrame, text='按鈕9')
-        btn9.pack(pady=(5,10), padx=10, fill='both', expand=True)
-        
-        middleFrame.pack(side='left', padx=10, fill='both', expand=True)
-        
-        # 右側框架
-        rightFrame = ttk.Frame(bottomFrame, relief='groove', borderwidth=2)
-        
-        # 按鈕10、11、12平均分配空間
-        btn10 = ttk.Button(rightFrame, text='按鈕10')
-        btn10.pack(pady=(10,5), padx=10, fill='both', expand=True)
-        btn11 = ttk.Button(rightFrame, text='按鈕11')
-        btn11.pack(pady=5, padx=10, fill='both', expand=True)
-        btn12 = ttk.Button(rightFrame, text='按鈕12')
-        btn12.pack(pady=(5,10), padx=10, fill='both', expand=True)
-        
-        rightFrame.pack(side='left', padx=10, fill='both', expand=True)
-        
-        bottomFrame.pack(pady=10, padx=10, fill='both', expand=True)
+        #leftFrame============================================================================
+        leftFrame = ttk.Frame(bottomFrame,borderwidth=1,relief='groove',style='bottom.TFrame')
+        btn4 = ttk.Button(leftFrame,text='下左上')
+        btn4.pack(expand=True,fill='both',padx=5,pady=5,ipady=25)
+        btn5 = ttk.Button(leftFrame,text='下左中')
+        btn5.pack(expand=True,fill='both',padx=5,ipady=10)
+        btn6 = ttk.Button(leftFrame,text='下左下')
+        btn6.pack(expand=True,fill='both',padx=5,pady=5,ipady=10)
+        leftFrame.pack(side='left',padx=10,pady=10,expand=True,fill='both')
+        #end leftFrame========================================================================
+
+        #centerFrame============================================================================
+        centerFrame = ttk.Frame(bottomFrame,borderwidth=1,relief='groove',style='bottom.TFrame')
+        btn7 = ttk.Button(centerFrame,text='下中上')
+        btn7.pack(expand=True,fill='both',padx=5,pady=5,ipady=20)
+        btn8 = ttk.Button(centerFrame,text='下中中')
+        btn8.pack(expand=True,fill='both',padx=5,ipady=5)
+        btn9 = ttk.Button(centerFrame,text='下中下')
+        btn9.pack(expand=True,fill='both',padx=5,pady=5,ipady=20)
+        centerFrame.pack(side='left',pady=10,expand=True,fill='both')
+        #end centerFrame========================================================================
+
+        #rightFrame============================================================================
+        rightFrame = ttk.Frame(bottomFrame,borderwidth=1,relief='groove',style='bottom.TFrame')
+        btn10 = ttk.Button(rightFrame,text='下右上')
+        btn10.pack(expand=True,fill='both',padx=5,pady=5)
+        btn11 = ttk.Button(rightFrame,text='下右中')
+        btn11.pack(expand=True,fill='both',padx=5)
+        btn12 = ttk.Button(rightFrame,text='下右下')
+        btn12.pack(expand=True,fill='both',padx=5,pady=5)
+        rightFrame.pack(side='left',padx=10,pady=10,expand=True,fill='both')
+        #end rightFrame========================================================================
+
+        bottomFrame.pack(padx=10,pady=10,expand=True,fill='both')
+        #endbottomFrame==================================================================
 
 def main():
-    window = Window(theme='breeze')  
-    window.geometry('800x600')  
+    window = Window(theme='breeze')
     window.mainloop()
 
 if __name__ == '__main__':
