@@ -50,3 +50,25 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#Tkinter Checkbox
+
+# checkbox_var = tk.StringVar()
+
+# def check_changed():
+#     #...
+
+# checkbox = ttk.Checkbutton(container,
+#                 text='<checkbox label>',
+#                 command=check_changed,
+#                 variable=checkbox_var,
+#                 onvalue='<value_when_checked>',
+#                 offvalue='<value_when_unchecked>')
+
+#TkDocs
+
+# measureSystem = StringVar()
+# check = ttk.Checkbutton(parent, text='Use Metric', 
+# 	    command=metricChanged, variable=measureSystem,
+# 	    onvalue='metric', offvalue='imperial')
