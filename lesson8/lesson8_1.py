@@ -5,7 +5,6 @@ import tkinter as tk
 from ttkthemes import ThemedTk
 from tkinter.messagebox import showinfo
 import view
-from PIL import ImageTk, Image
 
 class Window(ThemedTk):
     def __init__(self,*args, **kwargs):
@@ -30,9 +29,7 @@ class Window(ThemedTk):
             #==============SelectedFrame===============        
         self.selectedFrame= ttk.Frame(self,padding=[10,10,10,10])
         #增加refresh button
-        self.icon_image = Image.open("refresh.png")
-        self.icon_photo = ImageTk.PhotoImage(self.icon_image)
-        icon_button = tk.Button(self.selectedFrame,text='重新下載資料',image=self.icon_photo, borderwidth=0, highlightthickness=0,width=15)
+        icon_button = view.ImageButton(self.selectedFrame)
         icon_button.pack()
 
         #combobox選擇城市      
