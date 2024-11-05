@@ -29,7 +29,7 @@ class Window(ThemedTk):
             #==============SelectedFrame===============        
         self.selectedFrame= ttk.Frame(self,padding=[10,10,10,10])
         #增加refresh button
-        icon_button = view.ImageButton(self.selectedFrame)
+        icon_button = view.ImageButton(self.selectedFrame,command=lambda:datasource.download_data())
         icon_button.pack()
 
         #combobox選擇城市      
@@ -45,11 +45,14 @@ class Window(ThemedTk):
         
         self.selectedFrame.pack(side='left',expand=True,fill='y',padx=(20,0))
             #==============End SelectedFrame=============== 
-    
+            
+            #==================RightFrame==================
+        rightFrame = ttk.LabelFrame(bottomFrame,text="這是labelFrame")
+        #建立treeView
         # define columns
         columns = ('date', 'county', 'sitename', 'aqi', 'pm25','status','lat','lon')
 
-        self.tree = ttk.Treeview(bottomFrame, columns=columns, show='headings')
+        self.tree = ttk.Treeview(rightFrame, columns=columns, show='headings')
 
         # define headings
         self.tree.heading('date', text='日期')
@@ -70,19 +73,14 @@ class Window(ThemedTk):
         self.tree.column('lat', width=100,anchor="center")
         self.tree.column('lon', width=100,anchor="center")
         
-        # generate sample data
-        #contacts = []
-        #for n in range(1, 100):
-        #    contacts.append((f'first {n}', f'last {n}', f'email{n}@example.com'))
-
-        # add data to the treeview
-        #for contact in contacts:
-        #    tree.insert('', tk.END, values=contact)
-        
         self.tree.pack(side='right')
+
+        rightFrame.pack(side='right')
+            #==============End RightFrame================
+                
         bottomFrame.pack(expand=True,fill='x',padx=20,pady=(0,20),ipadx=10,ipady=10)
 
-            #==============end bottomFrame===============
+            #==============End bottomFrame===============
         
     def county_selected(self,event):
         selected = self.selected_county.get()
