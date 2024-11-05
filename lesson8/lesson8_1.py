@@ -37,7 +37,7 @@ class Window(ThemedTk):
         sitenames_cb.bind('<<ComboboxSelected>>', self.county_selected)
         sitenames_cb.pack(anchor='n',pady=10)
 
-        self.listbox = None 
+        self.sitenameFrame = None 
         
         
 
@@ -87,19 +87,10 @@ class Window(ThemedTk):
     def county_selected(self,event):
         selected = self.selected_county.get()
         sitenames = datasource.get_sitename(county=selected)
-        #listbox選擇站點
-        if self.listbox:
-            self.listbox.destroy()
+        #checkbox選擇站點
+        if self.sitenameFrame:
             self.selectedFrame.destroy()
 
-        var = tk.Variable(value=sitenames)
-        self.listbox = tk.Listbox(
-                    self.selectedFrame,
-                    listvariable=var,
-                    height=6,
-                    selectmode=tk.EXTENDED
-                )
-        self.listbox.pack()
         self.sitenameFrame = view.SitenameFrame(master=self.selectedFrame,sitenames=sitenames)
         self.sitenameFrame.pack()
 
