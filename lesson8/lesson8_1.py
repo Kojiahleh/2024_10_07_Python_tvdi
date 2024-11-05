@@ -5,6 +5,7 @@ import tkinter as tk
 from ttkthemes import ThemedTk
 from tkinter.messagebox import showinfo
 import view
+from PIL import ImageTk, Image
 
 class Window(ThemedTk):
     def __init__(self,*args, **kwargs):
@@ -28,6 +29,12 @@ class Window(ThemedTk):
         bottomFrame = ttk.Frame(self)
             #==============SelectedFrame===============        
         self.selectedFrame= ttk.Frame(self,padding=[10,10,10,10])
+        #增加refresh button
+        self.icon_image = Image.open("refresh.png")
+        self.icon_photo = ImageTk.PhotoImage(self.icon_image)
+        icon_button = tk.Button(self.selectedFrame,text='重新下載資料',image=self.icon_photo, borderwidth=0, highlightthickness=0,width=15)
+        icon_button.pack()
+
         #combobox選擇城市      
         counties = datasource.get_county()
         #self.selected_site = tk.StringVar()
@@ -43,7 +50,7 @@ class Window(ThemedTk):
             #==============End SelectedFrame=============== 
     
         # define columns
-        columns = ('date', 'county', 'aqi', 'pm25','status','lat','lon')
+        columns = ('date', 'county', 'sitename', 'aqi', 'pm25','status','lat','lon')
 
         self.tree = ttk.Treeview(bottomFrame, columns=columns, show='headings')
 
@@ -83,13 +90,13 @@ class Window(ThemedTk):
     def county_selected(self,event):
         selected = self.selected_county.get()
         sitenames = datasource.get_sitename(county=selected)
-        #checkbox選擇站點
-        if self.sitenameFrame:
-            self.selectedFrame.destroy()
-
+        #listbox選擇站點
+        if self.sitenameFrame:            
+            self.sitenameFrame.destroy()
+        
         self.sitenameFrame = view.SitenameFrame(master=self.selectedFrame,sitenames=sitenames,radio_controller=self.radio_button_click)
         self.sitenameFrame.pack()
-
+    
     def radio_button_click(self,selected_sitename:str):
         '''
         - 此method是傳遞給SitenameFrame實體
@@ -101,8 +108,8 @@ class Window(ThemedTk):
             self.tree.delete(children)        
         selected_data = datasource.get_selected_data(selected_sitename)
         for record in selected_data:
-            self.tree.insert("", "end", values=record)
-   
+            self.tree.insert("", "end", values=record) 
+
 def main():
     datasource.download_data() #下載至資料庫
     window = Window(theme="arc")
