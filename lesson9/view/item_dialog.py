@@ -71,8 +71,8 @@ class MyCustomDialog(Dialog):
 
         map_frame = ttk.Frame(master)
         map_widget = tkmap.TkinterMapView(map_frame, width=400, height=400, corner_radius=0)
-        map_widget.set_position(self.lat, self.lon,marker=True) #台北市位置
-        map_widget.set_zoom(15) #設定顯示大小
+        map_widget.set_position(self.lat, self.lon,marker=True) #座標位置
+        # map_widget.set_zoom(15) #設定顯示大小
         map_widget.pack()
         map_frame.pack(padx=10,pady=10)
 
